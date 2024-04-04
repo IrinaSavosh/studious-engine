@@ -1,0 +1,90 @@
+Вход в MySQL: 
+mysql -u root -p
+
+Создание таблицы:
+CREATE DATABASE Human_friends;
+SHOW DATABASE;
+USE Human_friends;
+SELECT DATABASE();
+CREATE TABLE pets (
+	id INT AUTO_INCREMENT PRIMARY KEY, 
+	name VARCHAR(20) NOT NULL, 
+	type VARCHAR(20) NOT NULL, 
+	birthday DATE, 
+	commands VARCHAR(20)
+);
+Вывод созданной таблицы:
+SHOW TABLES;
+DESCRIBE pets;
+
+Внесение данных в таблицу:
+INSERT INTO pets (id, name, type, birthday, commands) 
+VALUES 
+	(4, 'Buddy', 'Dog', '2016-12-20', 'Sit, paw, bark'), 
+	(5, 'Smudge', 'Cat', '2020-02-20', 'Sit, pounce'), 
+	(6, 'Peanut', 'Humster', '2021-08-01', 'roll, spin'), 
+	(7, 'Bella', 'Dog', '2019-11-11', 'Sit, stay, roll'), 
+	(8, 'Oliver', 'Cat', '2020-06-30', 'Meow, jump')
+;
+SELECT * FROM pets;
+
+Создание другой таблицы:
+CREATE TABLE packAnimals (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(20) NOT NULL,
+	type VARCHAR(20) NOT NULL,
+	birthday DATE,
+	commands VARCHAR(20)
+);
+
+Добавление данных:
+INSERT INTO packAnimals (id, name, type, birthday, commands) 
+VALUES 
+	(3, 'Eeyore', 'Donkey', '2017-09-18', 'Walk carry load'), 
+	(4, 'Storm', 'Horse', '2014-05-05', 'Trot, canter'), 
+	(5, 'Dune', 'Camel', '2018-12-12', 'Walk, sit'), 
+	(6, 'Burro', 'Donkey', '2019-01-23', 'Walk, bray, kick'), 
+	(7, 'Blaze', 'Horse', '2016-02-29', 'Trot, jump'), 
+	(8, 'Sahara', 'Camel', '2015-08-14', 'Walk, run');
+
+Удаление "верблюдов":
+DELETE FROM packAnimals WHERE type = 'Camel';
+
+Создание таблицы всех животных с возрастом:
+CREATE TABLE youngAnimals AS
+SELECT *, 
+DATEDIFF(NOW(), birthday) / 365.25 AS age 
+FROM packAnimals 
+WHERE birthday IS NOT NULL 
+UNION 
+SELECT *, 
+DATEDIFF(NOW(), birthday) / 365.25 AS age 
+FROM pets 
+WHERE birthday IS NOT NULL;
+
+Вывод животных младше 3-х лет:
+SELECT * FROM youngAnimals WHERE age BETWEEN 1 AND 3;
+
+Объединение таблиц с информацией об исходной таблице:
+
+ALTER TABLE packAnimals ADD COLUMN sourceTable VARCHAR(30);
+ALTER TABLE youngAnimals ADD COLUMN sourceTable VARCHAR(30);
+ALTER TABLE pets ADD COLUMN sourceTable VARCHAR(30);
+
+UPDATE packAnimals SET sourceTable = 'packAnimals';
+UPDATE youngAnimals SET sourceTable = 'youngAnimals';
+UPDATE pets SET sourceTable = 'pets';
+
+ALTER TABLE youngAnimals DROP COLUMN age;
+
+SELECT * FROM packAnimals UNION ALL SELECT * FROM pets UNION ALL SELECT * FROM youngAnimals;
+
+
+
+
+
+
+
+
+
+

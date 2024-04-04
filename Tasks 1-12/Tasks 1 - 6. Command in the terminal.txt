@@ -1,0 +1,18 @@
+sudo -i
+
+Работа с файлами
+apt update
+cat >Pats.txt
+cat >PackAnimals.txt
+cat Pats.txt PackAnimals.txt >HumanFriends.txt
+mkdir Animals
+mv HumanFriends.txt /root/Animals
+
+Работа с MySql
+cd /tmp
+wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.29-1_all.deb
+dpkg -i mysql-apt-config_0.8.29-1_all.deb #добавление
+dpkg -r mysql-server #удаление
+
+history
+
