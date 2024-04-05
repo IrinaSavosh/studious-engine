@@ -56,59 +56,59 @@ public class PetRegistry {
       String name = scanner.nextLine();
       name = scanner.nextLine();
 
-      if (isNameExists(name)) {
-         System.out.println("Животное с таким именем уже существует. Попробуйте другое имя.");
-         return;
-      }
+   //    if (isNameExists(name)) {
+   //       System.out.println("Животное с таким именем уже существует. Попробуйте другое имя.");
+   //       return;
+   //    }
 
-      System.out.println("Введите дату рождения животного в формате ГГГГ-ММ-ДД:");
-      String birthday = scanner.nextLine();
+   //    System.out.println("Введите дату рождения животного в формате ГГГГ-ММ-ДД:");
+   //    String birthday = scanner.nextLine();
 
-      System.out.println("Введите тип животного (cat, dog, bird, hamster):");
-      String type = scanner.nextLine();
+   //    System.out.println("Введите тип животного (cat, dog, bird, hamster):");
+   //    String type = scanner.nextLine();
 
-      if (!type.equals("cat") && !type.equals("dog") && !type.equals("bird") && !type.equals("hamster")) {
-         System.out.println("Недопустимый тип животного. Допустимые значения: cat, dog, bird, hamster.");
-         return;
-      }
+   //    if (!type.equals("cat") && !type.equals("dog") && !type.equals("bird") && !type.equals("hamster")) {
+   //       System.out.println("Недопустимый тип животного. Допустимые значения: cat, dog, bird, hamster.");
+   //       return;
+   //    }
 
-      System.out.println("Введите команды, которые знает животное:");
-      String commands = scanner.nextLine();
+   //    System.out.println("Введите команды, которые знает животное:");
+   //    String commands = scanner.nextLine();
 
-      String newAnimal = name + ";" + birthday + ";" + type + ";" + commands;
+   //    String newAnimal = name + ";" + birthday + ";" + type + ";" + commands;
 
-      try (FileWriter file = new FileWriter("animals.txt", true)) {
-         file.write(newAnimal + System.lineSeparator());
-         System.out.println("Животное успешно добавлено в файл.");
-      } catch (IOException e) {
-         System.out.println("Ошибка при добавлении животного в файл.");
-         e.printStackTrace();
-      }
-   }
+   //    try (FileWriter file = new FileWriter("animals.txt", true)) {
+   //       file.write(newAnimal + System.lineSeparator());
+   //       System.out.println("Животное успешно добавлено в файл.");
+   //    } catch (IOException e) {
+   //       System.out.println("Ошибка при добавлении животного в файл.");
+   //       e.printStackTrace();
+   //    }
+   // }
 
-   private static boolean isNameExists(String name) {
-      try (Scanner fileScanner = new Scanner(new File("animals.txt"))) {
-         while (fileScanner.hasNextLine()) {
-            String line = fileScanner.nextLine();
-            String[] parts = line.split(";");
-            if (parts[0].equals(name)) {
-               return true;
-            }
-         }
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
-      return false;
-   }
+   // private static boolean isNameExists(String name) {
+   //    try (Scanner fileScanner = new Scanner(new File("animals.txt"))) {
+   //       while (fileScanner.hasNextLine()) {
+   //          String line = fileScanner.nextLine();
+   //          String[] parts = line.split(";");
+   //          if (parts[0].equals(name)) {
+   //             return true;
+   //          }
+   //       }
+   //    } catch (IOException e) {
+   //       e.printStackTrace();
+   //    }
+   //    return false;
+   // }
 
-   // System.out.println("Enter the pet's name:");
-   // String name = scanner.nextLine();
+   System.out.println("Enter the pet's name:");
+   String name = scanner.nextLine();
 
-   // System.out.println("Enter the pet's type (cat, dog, bird, humster):");
-   // String type = scanner.nextLine();
+   System.out.println("Enter the pet's type (cat, dog, bird, humster):");
+   String type = scanner.nextLine();
 
-   // System.out.println("Enter the pet's age:");
-   // int age = Integer.parseInt(scanner.nextLine());
+   System.out.println("Enter the pet's age:");
+   int age = Integer.parseInt(scanner.nextLine());
 
    // // Создаем JSON объект для нового питомца
    // JSONObject newPet = new JSONObject();
@@ -157,9 +157,9 @@ public class PetRegistry {
    // return;
    // }
 
-   // animals.put(name, animal);
-   // System.out.println("Pet successfully added");
-   // }
+   animals.put(name, animal);
+   System.out.println("Pet successfully added");
+   }
 
    private static void getPetDetails() {
       System.out.println("Enter the pet's name:");
